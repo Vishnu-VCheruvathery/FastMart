@@ -22,7 +22,7 @@ const Cart = () => {
   const getCart = async () => {
     try {
       if (id) {
-        const response = await axios.get(`https://fastmart-api.onrender.com/products/cart/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/products/cart/${id}`);
         const product = response.data.products
         // for(let i=0; i<product.length; i++){
         //   setItems(product[i])
@@ -38,7 +38,7 @@ const Cart = () => {
    const deleteCart = async() => {
     try {
       if(id){
-        const response = await axios.delete(`https://fastmart-api.onrender.com/products/cart/${id}`)
+        const response = await axios.delete(`${import.meta.env.VITE_SERVER_URL}/products/cart/${id}`)
         return response
       }
     } catch (error) {
@@ -47,7 +47,7 @@ const Cart = () => {
    }
 
    const buyItem = () => {
-    fetch('https://fastmart-api.onrender.com/products/checkout', {
+    fetch(`${import.meta.env.VITE_SERVER_URL}/products/checkout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

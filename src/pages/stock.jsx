@@ -10,7 +10,7 @@ const Stock = () => {
 
     const getProduct = async() => {
          try {
-            const response = await axios.get('https://fastmart-api.onrender.com/products/stock',{
+            const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/products/stock`,{
             params: {
                category: category
             }

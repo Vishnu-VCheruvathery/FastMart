@@ -17,7 +17,7 @@ const Form = () => {
 
    const Register = async() => {
     try {
-     await axios.post('https://fastmart-api.onrender.com/users/register', 
+     await axios.post(`${import.meta.env.VITE_SERVER_URL}/users/register`, 
       {username:username, 
         password:password,
         role:role
@@ -35,7 +35,7 @@ const Form = () => {
 
    const Login = async() => {
     try {
-      const response = await axios.post('https://fastmart-api.onrender.com/users/login', {
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/users/login`, {
         username: loggedUser,
         password: loggedPassword,
       });

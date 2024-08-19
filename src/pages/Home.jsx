@@ -36,7 +36,7 @@ const Home = () => {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get('https://fastmart-api.onrender.com/products');
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/products`);
       setProducts(response.data);
     } catch (error) {
       console.log(error);

@@ -48,7 +48,7 @@ const Navbar = () => {
   const findBySearch = async () => {
     try {
       if (searchTerm) {
-        const response = await axios.get(`https://fastmart-api.onrender.com/products/find/`, {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/products/find/`, {
           params: {
             name: searchTerm
           }

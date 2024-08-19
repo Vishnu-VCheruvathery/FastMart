@@ -38,7 +38,7 @@ const Product = () => {
 
     const addToCart = async (data) => {
         try {
-            const response = await axios.post(`https://fastmart-api.onrender.com/products/cart/${data.userID}/${data.id}`);
+            const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/products/cart/${data.userID}/${data.id}`);
             console.log(response);
             toast.success('Added to Cart')
             setTimeout(() => {
