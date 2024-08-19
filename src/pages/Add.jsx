@@ -34,7 +34,7 @@ const Add = () => {
     formData.append("productType", productType)
     formData.append("image", image)
      try {
-      const response = await axios.post('http://localhost:3000/products/add', formData, 
+      const response = await axios.post('https://fastmart-api.onrender.com/products/add', formData, 
       {headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data'

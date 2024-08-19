@@ -3,15 +3,23 @@ import Item from '../components/Item'
 import { Stack, Typography } from '@mui/material'
 import axios from 'axios'
 import ImageSlider from '../components/ImageSlider'
-
-
-
-
-
+import { useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast'
 
 const Home = () => {
- 
+  const location = useLocation();
   const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const paymentStatus = queryParams.get('payment');
+
+    if (paymentStatus === 'success') {
+      toast.success('Your order is placed!');
+      window.history.replaceState({}, document.title, location.pathname); // Clear query params
+    }
+  }, [location.search]);
+ 
+ 
  
 
   const images = [
@@ -28,7 +36,7 @@ const Home = () => {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/products');
+      const response = await axios.get('https://fastmart-api.onrender.com/products');
       setProducts(response.data);
     } catch (error) {
       console.log(error);

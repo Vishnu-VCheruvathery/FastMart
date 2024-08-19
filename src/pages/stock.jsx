@@ -10,7 +10,7 @@ const Stock = () => {
 
     const getProduct = async() => {
          try {
-            const response = await axios.get('http://localhost:3000/products/stock',{
+            const response = await axios.get('https://fastmart-api.onrender.com/products/stock',{
             params: {
                category: category
             }

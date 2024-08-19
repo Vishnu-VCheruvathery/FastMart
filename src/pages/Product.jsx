@@ -38,7 +38,7 @@ const Product = () => {
 
     const addToCart = async (data) => {
         try {
-            const response = await axios.post(`http://localhost:3000/products/cart/${data.userID}/${data.id}`);
+            const response = await axios.post(`https://fastmart-api.onrender.com/products/cart/${data.userID}/${data.id}`);
             console.log(response);
             toast.success('Added to Cart')
             setTimeout(() => {
@@ -110,7 +110,14 @@ const Product = () => {
                     backgroundColor: '#cfd0d1'
                 }
             }}
-            onClick={() => { addToCart({ id: receivedObj._id, userID: userID }) }}
+
+            onClick={() => {
+        if (userID) {
+            addToCart({ id: receivedObj._id, userID: userID });
+        } else {
+            toast.error('You need to login first');
+        }
+    }}
             >Add to Cart <AddShoppingCartIcon/></Button>
     </Card>
     <Card sx={{

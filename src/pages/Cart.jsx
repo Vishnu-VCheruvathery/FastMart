@@ -22,7 +22,7 @@ const Cart = () => {
   const getCart = async () => {
     try {
       if (id) {
-        const response = await axios.get(`http://localhost:3000/products/cart/${id}`);
+        const response = await axios.get(`https://fastmart-api.onrender.com/products/cart/${id}`);
         const product = response.data.products
         // for(let i=0; i<product.length; i++){
         //   setItems(product[i])
@@ -38,7 +38,7 @@ const Cart = () => {
    const deleteCart = async() => {
     try {
       if(id){
-        const response = await axios.delete(`http://localhost:3000/products/cart/${id}`)
+        const response = await axios.delete(`https://fastmart-api.onrender.com/products/cart/${id}`)
         return response
       }
     } catch (error) {
@@ -46,24 +46,26 @@ const Cart = () => {
     }
    }
 
-  const buyItem = () => {
-      fetch('http://localhost:3000/products/checkout',{
-         method: 'POST',
-         headers: {
-          'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({items})
-      }).then(res => {
-        if(res.ok) return res.json()
-        return res.json().then(json => Promise.reject(json))
-      }).then(({url}) => {
-        window.location = url
-        toast.success('Order placed')
-        deleteCart()
-      }).catch(e => {
-        console.error(e.error)
+   const buyItem = () => {
+    fetch('https://fastmart-api.onrender.com/products/checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ items })
+    })
+      .then(res => {
+        if (res.ok) return res.json();
+        return res.json().then(json => Promise.reject(json));
       })
-  }
+      .then(({ url }) => {
+            window.location = url;  
+        deleteCart();
+      })
+      .catch(e => {
+        console.error(e.error);
+      });
+  };
 
   useEffect(() => {
     getCart();

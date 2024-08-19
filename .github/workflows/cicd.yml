@@ -1,0 +1,39 @@
+name: Deploy Node Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Login to docker hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+
+      - name: Build Docker Image 
+        run: docker build -t vishnu463/fastmart-web .
+
+      - name: Publish Image to docker hub
+        run: docker push vishnu463/fastmart-web:latest
+    
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Stop existing Docker container
+        run: docker stop fastmart-web-container || true
+
+      - name: Remove existing Docker container
+        run: docker rm fastmart-web-container || true
+
+      - name: Pull image from docker hub
+        run: docker pull vishnu463/fastmart-web:latest
+
+      - name: Run Docker Container
+        run: |
+          docker run -d -p 5173:80 --name fastmart-web-container vishnu463/fastmart-web
