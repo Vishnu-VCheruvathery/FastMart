@@ -10,7 +10,7 @@ import Form from './pages/Form'
 import Add from './pages/Add'
 import Cart from './pages/Cart'
 import Cancel from './pages/Cancel'
-import Stock from './pages/Stock'
+import Stock from './pages/stock'
 
 
 
