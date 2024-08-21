@@ -40,7 +40,7 @@ const Add = () => {
         'Content-Type': 'multipart/form-data'
       }}
       )
-      toast.success('Added Product Successfully')
+      toast.success('Added Product Successfully!')
       return response.data
 
      } catch (error) {
