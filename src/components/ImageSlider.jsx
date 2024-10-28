@@ -89,7 +89,7 @@ const ImageSlider = ({ slides, parentWidth }) => {
       clearTimeout(timerRef.current);
     }
     timerRef.current = setTimeout(() => {
-      goToNext();
+      goToNext()
     }, 2000);
 
     return () => clearTimeout(timerRef.current);
