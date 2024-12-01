@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <StyledFooter>
       <Typography variant='h6'>©</Typography>
-      <Typography variant='h6'>FastMart 2022-23</Typography>
+      <Typography variant='h6'>FastMart 2023-24</Typography>
     </StyledFooter>
   )
 }
