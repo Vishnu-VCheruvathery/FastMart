@@ -121,7 +121,7 @@ const Product = () => {
             >Add to Cart <AddShoppingCartIcon/></Button>
     </Card>
     <Card sx={{
-        // height: '50%',
+       
         paddingBottom: '10px',
         textAlign: 'center'
         }}>
